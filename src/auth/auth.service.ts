@@ -23,7 +23,7 @@ export interface LoginResult {
   user: SafeUser;
 }
 
-const DUMMY_HASH = 'REPLACE_ME_WITH_REAL_HASH';
+const DUMMY_HASH = '$argon2id$v=19$m=65536,t=3,p=4$GrzjWHJ+/nE6NsfVf2UDLg$RT35F46XhN/n+rTpZNpaB6crqUjMnKJf/CXwXg6fMYM';
 
 @Injectable()
 export class AuthService {
