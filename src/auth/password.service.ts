@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import * as argon2 from 'argon2';
 
+
 @Injectable()
 export class PasswordService {
   private readonly hashOptions: argon2.Options = {
