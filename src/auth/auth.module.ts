@@ -10,6 +10,7 @@ import { TokenService } from './token.service';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import type { Env } from '../config/env.validation';
+import { RefreshTokenService } from './refresh-token.service';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import type { Env } from '../config/env.validation';
     AuthService,
     PasswordService,
     TokenService,
+    RefreshTokenService,
     JwtStrategy,
     { provide: APP_GUARD, useClass: JwtAuthGuard },
   ],

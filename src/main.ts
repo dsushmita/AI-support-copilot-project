@@ -4,11 +4,13 @@ import { AppModule } from './app.module';
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
 import { ValidationPipe } from '@nestjs/common';
+import cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { bufferLogs: true });
   const logger = app.get(Logger);
   app.useLogger(logger);
+  app.use(cookieParser())
   app.useGlobalFilters(new AllExceptionsFilter(logger));
   app.useGlobalInterceptors(new LoggingInterceptor(logger));
   app.useGlobalPipes(

@@ -10,6 +10,8 @@ export const envSchema = z.object({
   REDIS_PORT: z.coerce.number().int().positive().default(6379),
   JWT_ACCESS_SECRET: z.string().min(32),
   JWT_ACCESS_EXPIRES_IN: z.string().default('15m'),
+  REFRESH_TOKEN_TTL_DAYS: z.coerce.number().int().positive().default(7),
+  JWT_REFRESH_SECRET: z.string().min(32),
 });
 
 export type Env = z.infer<typeof envSchema>;

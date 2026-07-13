@@ -13,6 +13,22 @@ datasource db {
   provider = "postgresql"
 }
 
+model RefreshToken {
+  id        String   @id @default(uuid())
+  tokenHash String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  family    String
+  revokedAt DateTime?
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([family])
+  @@map("refresh_tokens")
+}
+
 model Tenant {
   id        String   @id @default(uuid())
   name      String
@@ -39,4 +55,7 @@ model User {
   @@unique([tenantId, email])
   @@index([tenantId])
   @@map("users")
+  refreshTokens RefreshToken[]
 }
+
+
